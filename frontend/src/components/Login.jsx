@@ -21,8 +21,11 @@ const Login = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', credentials);
+        const res = await axios.post(`${backendUrl}/api/auth/login`, credentials);
       localStorage.setItem('token', res.data.token);
       setMessage('Login successful! Redirecting...');
       setVariant('success');

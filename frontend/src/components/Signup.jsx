@@ -47,10 +47,10 @@ const Signup = () => {
             setVariant("danger");
             return;
         }
-
+        const backendUrl = import.meta.env.VITE_BACKEND_URL;
         // Check if email already exists
         try {
-            const emailCheckRes = await axios.post('http://localhost:5000/api/auth/check-email', { email });
+            const emailCheckRes = await axios.post(`${backendUrl}/api/auth/check-email`, { email });
             if (emailCheckRes.data.exists) {
                 setEmailExists(true);
                 setMessage("Email already exists. Please use a different email.");
@@ -64,7 +64,7 @@ const Signup = () => {
         setLoading(true);
 
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/signup', {
+            const res = await axios.post(`${backendUrl}/api/auth/signup`, {
                 firstName,
                 lastName,
                 email,
@@ -120,7 +120,7 @@ const Signup = () => {
                             required
                         />
                         {emailExists && <div className="invalid-feedback">Email already exists. Please use a different email.</div>} {/* Show error if email exists */}
-                        
+
                         <input
                             type="password"
                             className={`form-control ${passwordError ? 'is-invalid' : ''}`}
