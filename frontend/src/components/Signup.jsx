@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ const Signup = () => {
     const [variant, setVariant] = useState('danger');
     const [loading, setLoading] = useState(false);
     const [passwordError, setPasswordError] = useState('');
-    const [emailExists, setEmailExists] = useState(false); // New state to track if email already exists
+    const [emailExists, setEmailExists] = useState(false); 
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -48,7 +49,6 @@ const Signup = () => {
             return;
         }
         const backendUrl = import.meta.env.VITE_BACKEND_URL;
-        // Check if email already exists
         try {
             const emailCheckRes = await axios.post(`${backendUrl}/api/auth/check-email`, { email });
             if (emailCheckRes.data.exists) {
@@ -156,12 +156,11 @@ const Signup = () => {
                     </div>
 
                     <div className="login-link">
-                        Already a member? <a href="/login">Login</a>
+                        Already a member? <Link to="/login">Login</Link>
                     </div>
                 </div>
             </div>
 
-            {/* Updated part with a single image container */}
             <div className="signup-right">
                 <img
                     src="https://plus.unsplash.com/premium_photo-1683984171269-04c84ee23234?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

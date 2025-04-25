@@ -10,7 +10,6 @@ const Home = () => {
     jewelery: 'https://cdn.pixabay.com/photo/2017/08/23/15/49/rings-2673268_1280.jpg',
     "men's clothing": 'https://cdn.pixabay.com/photo/2025/02/14/01/43/men-9405485_1280.jpg',
     "women's clothing": 'https://cdn.pixabay.com/photo/2017/09/18/19/16/fashion-2762865_1280.jpg',
-    // Add more if needed
   };
 
   useEffect(() => {
@@ -76,7 +75,7 @@ const Home = () => {
                 <div key={index} className="col-md-4 col-sm-6">
                   <div className="card shadow-sm h-100">
                     <img
-                      src={categoryImages[category] || 'https://via.placeholder.com/400x250'} // Default image if no specific category image is found
+                      src={categoryImages[category] || 'https://via.placeholder.com/400x250'} 
                       className="card-img-top"
                       alt={category}
                     />

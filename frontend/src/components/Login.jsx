@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaLock, FaUser } from 'react-icons/fa';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -13,12 +14,10 @@ const Login = () => {
   const [variant, setVariant] = useState('');
   const navigate = useNavigate();
 
-  // Handle input change
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -29,7 +28,7 @@ const Login = () => {
       localStorage.setItem('token', res.data.token);
       setMessage('Login successful! Redirecting...');
       setVariant('success');
-      setTimeout(() => navigate('/products'), 1500); // Redirect after 1.5 seconds
+      setTimeout(() => navigate('/products'), 1500); 
     } catch (err) {
       setMessage(err.response?.data?.msg || 'Invalid email or password');
       setVariant('danger');
@@ -44,7 +43,6 @@ const Login = () => {
       }}
     >
       <div className="row shadow rounded-4 overflow-hidden w-100" style={{ maxWidth: '900px' }}>
-        {/* Image section */}
         <div className="col-md-6 d-none d-md-block p-0">
           <img
             src="https://plus.unsplash.com/premium_photo-1720192861639-1524439fc166?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bG9naW58ZW58MHx8MHx8fDA%3D"
@@ -54,11 +52,9 @@ const Login = () => {
           />
         </div>
 
-        {/* Form section */}
         <div className="col-md-6 bg-white p-5">
           <h2 className="text-center mb-4">Welcome Back</h2>
 
-          {/* Displaying the message directly */}
           {message && (
             <div className={`alert alert-${variant}`} role="alert">
               {message}
@@ -76,7 +72,7 @@ const Login = () => {
                   className="form-control"
                   placeholder="Enter email"
                   onChange={handleChange}
-                  value={credentials.email} // Bind the state value to input
+                  value={credentials.email} 
                   required
                 />
               </div>
@@ -92,7 +88,7 @@ const Login = () => {
                   className="form-control"
                   placeholder="Enter password"
                   onChange={handleChange}
-                  value={credentials.password} // Bind the state value to input
+                  value={credentials.password}
                   required
                 />
               </div>
@@ -111,7 +107,7 @@ const Login = () => {
 
             <div className="text-center">
               <small>
-                Don’t have an account? <a href="/signup">Sign Up</a>
+              Don’t have an account? <Link to="/signup">Sign Up</Link>
               </small>
             </div>
           </form>

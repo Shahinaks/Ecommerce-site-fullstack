@@ -16,7 +16,6 @@ const Products = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the user is authenticated
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
@@ -24,7 +23,6 @@ const Products = () => {
       setAuthenticated(true);
     }
     
-    // Fetch products
     fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
       .then(data => setProducts(data));
